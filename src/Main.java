@@ -1,5 +1,6 @@
 public class Main {
-    static void main() {
-
+    public static void main(String[] args) {
+        ui.MenuPrincipal.main(args);
     }
 }
+
