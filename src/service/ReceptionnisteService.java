@@ -23,14 +23,9 @@ public class ReceptionnisteService {
         this.compteurDAO = new CompteurDAO();
     }
 
-    /**
-     * Enregistre une réservation : crée le client, la réservation,
-     * met à jour la chambre et incrémente le compteur du réceptionniste.
-     */
-    public Reservation effectuerReservation(String nomClient, String adresseClient,
-                                            String telClient, String codeChambre,
-                                            String matriculeRec, int nombreJours) throws IOException {
-        // Créer le client
+    public Reservation effectuerReservation(String nomClient, String adresseClient,String telClient, String codeChambre,String matriculeRec, int nombreJours) throws IOException 
+    {
+        
         int numClient = compteurDAO.prochainClient();
         String codeClient = MatriculeGenerator.genererCodeClient(numClient);
         Client client = new Client(codeClient, nomClient, adresseClient, telClient);
@@ -40,18 +35,18 @@ public class ReceptionnisteService {
         Chambre chambre = chambreDAO.trouverParCode(codeChambre);
         double montant = nombreJours * (chambre.getPrix() + chambre.getServiceSupplementaire());
 
-        // Créer la réservation
+        // Creation de la réservation
         int numRes = compteurDAO.prochainReservation();
         String codeRes = MatriculeGenerator.genererCodeReservation(numRes);
         Reservation reservation = new Reservation(codeRes, codeClient, matriculeRec,
                 codeChambre, montant, LocalDate.now(), nombreJours);
         reservationDAO.sauvegarder(reservation);
 
-        // Marquer la chambre comme occupée
+        
         chambre.setStatut(Chambre.Statut.OCCUPEE);
         chambreDAO.mettreAJour(chambre);
 
-        // Incrémentation du     compteur du réceptionniste
+        // Incrémentation du compteur du réceptionniste
         Employe e = employeDAO.trouverParMatricule(matriculeRec);
         if (e instanceof Receptionniste) {
             ((Receptionniste) e).incrementerClients();
