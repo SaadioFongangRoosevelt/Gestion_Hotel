@@ -140,7 +140,7 @@ Tant qu'aucun réceptionniste n'est enregistré, le système **force la connexio
 
 ---
 
-## 6. Règles métier
+## 6. Règles et logique métier
 
 ### Calcul du montant d'une réservation
 
