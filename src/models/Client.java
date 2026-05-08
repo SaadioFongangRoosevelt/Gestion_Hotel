@@ -1,20 +1,19 @@
 package models;
 
 public class Client extends Personne {
-    public Client() {
-        super();
+    private String codeClient;
+
+    public Client(String codeClient, String nom, String adresse, String telephone) {
+        super(nom, adresse, telephone);
+        this.codeClient = codeClient;
     }
 
-    public Client(String code, String nom, String adresse, String telephone) {
-        super(code, nom, adresse, telephone);
-    }
+    public String getCodeClient() { return codeClient; }
+    public void setCodeClient(String codeClient) { this.codeClient = codeClient; }
 
-    public static Client depuisEnregistrement(String ligne) {
-        String[] parts = ligne.split("\t");
-        if (parts.length != 4) {
-            return null;
-        }
-        return new Client(parts[0], parts[1], parts[2], parts[3]);
+    @Override
+    public String toString()
+    {
+        return codeClient + "\t" + nom + "\t" + adresse + "\t" + telephone;
     }
 }
-
