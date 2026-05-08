@@ -3,31 +3,36 @@ package models;
 import java.time.LocalDate;
 
 public class Reservation {
-    private Client client;
-    private Chambre chambre;
-    private LocalDate dateDebut;
-     private LocalDate dateFin;
+    private String codeReservation;
+    private String codeClient;
+    private String matriculeReceptionniste;
+    private String codeChambre;
+    private double montant;
+    private LocalDate dateReservation;
+    private int nombreJours;
 
-    public Reservation(Client client, Chambre chambre, LocalDate dateDebut, LocalDate dateFin) {
-        this.client = client;
-        this.chambre = chambre;
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
+    public Reservation(String codeReservation, String codeClient, String matriculeReceptionniste,
+                       String codeChambre, double montant, LocalDate dateReservation, int nombreJours) {
+        this.codeReservation = codeReservation;
+        this.codeClient = codeClient;
+        this.matriculeReceptionniste = matriculeReceptionniste;
+        this.codeChambre = codeChambre;
+        this.montant = montant;
+        this.dateReservation = dateReservation;
+        this.nombreJours = nombreJours;
     }
 
-    public Client getClient() {
-        return client;
-    }
+    public String getCodeReservation() { return codeReservation; }
+    public String getCodeClient() { return codeClient; }
+    public String getMatriculeReceptionniste() { return matriculeReceptionniste; }
+    public String getCodeChambre() { return codeChambre; }
+    public double getMontant() { return montant; }
+    public LocalDate getDateReservation() { return dateReservation; }
+    public int getNombreJours() { return nombreJours; }
 
-    public Chambre getChambre() {
-        return chambre;
-    }
-
-    public LocalDate getDateDebut() {
-        return dateDebut;
-    }
-
-    public LocalDate getDateFin() {
-        return dateFin;
+    @Override
+    public String toString() {
+        return codeReservation + "\t" + codeClient + "\t" + matriculeReceptionniste + "\t"
+                + codeChambre + "\t" + montant + "\t" + dateReservation.toString() + "\t" + nombreJours;
     }
 }
