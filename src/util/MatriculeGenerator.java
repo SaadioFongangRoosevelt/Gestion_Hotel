@@ -1,8 +1,4 @@
 package util;
-
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class MatriculeGenerator {
 
     public static String generer(String suffixe, int compteur) {
