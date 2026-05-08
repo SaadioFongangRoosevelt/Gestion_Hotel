@@ -352,4 +352,44 @@ public class GerantUI {
         scanner.nextLine();
     }
 
+    public void afficherMenu() {
+        boolean continuer = true;
+        while (continuer) {
+            ConsoleUtil.clearScreen();
+            ConsoleUtil.printTitle("MENU GÉRANT");
+            System.out.println("  Connecté : " + ConsoleUtil.CYAN + gerant.getNom()
+                    + ConsoleUtil.RESET + " [" + gerant.getMatricule() + "]");
+            ConsoleUtil.printSeparator();
+            ConsoleUtil.printMenuOption(1, "Recruter un réceptionniste");
+            ConsoleUtil.printMenuOption(2, "Payer un réceptionniste");
+            ConsoleUtil.printMenuOption(3, "Ajouter une chambre");
+            ConsoleUtil.printMenuOption(4, "Mettre une chambre hors service");
+            ConsoleUtil.printMenuOption(5, "Remettre une chambre en service");
+            ConsoleUtil.printMenuOption(6, "Statistiques générales");
+            ConsoleUtil.printMenuOption(7, "Liste des réceptionnistes");
+            ConsoleUtil.printMenuOption(8, "Liste des chambres");
+            ConsoleUtil.printMenuOption(9, "Licencier un receptionniste");
+            ConsoleUtil.printMenuOption(0, "Déconnexion");
+            ConsoleUtil.printSeparator();
+            System.out.print("  Votre choix : ");
+
+            String choix = scanner.nextLine().trim();
+            switch (choix) {
+                case "1": menuRecruterReceptionniste(); break;
+                case "2": menuPayerReceptionniste(); break;
+                case "3": menuAjouterChambre(); break;
+                case "4": menuMettreHorsService(); break;
+                case "5": menuRemettreEnService(); break;
+                case "6": afficherStatistiques(); break;
+                case "7": afficherListeReceptionnistes(); break;
+                case "8": afficherListeChambres(); break;
+                case "9": menuLicencierReceptionniste(); break;
+                case "0": continuer = false; break;
+                default:
+                    ConsoleUtil.error("Option invalide. Réessayez.");
+                    pause();
+            }
+        }
+    }
+
 }
