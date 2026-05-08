@@ -29,6 +29,13 @@ public class Reservation {
     public double getMontant() { return montant; }
     public LocalDate getDateReservation() { return dateReservation; }
     public int getNombreJours() { return nombreJours; }
+    public void setCodeReservation(String codeReservation) { this.codeReservation = codeReservation; }
+    public void setCodeClient(String codeClient) { this.codeClient = codeClient; }
+    public void setMatriculeReceptionniste(String matriculeReceptionniste) { this.matriculeReceptionniste = matriculeReceptionniste; }
+    public void setCodeChambre(String codeChambre) { this.codeChambre = codeChambre; }
+    public void setMontant(double montant) { this.montant = montant; }
+    public void setDateReservation(LocalDate dateReservation) { this.dateReservation = dateReservation; }
+    public void setNombreJours(int nombreJours) { this.nombreJours = nombreJours; }
 
     @Override
     public String toString() {
