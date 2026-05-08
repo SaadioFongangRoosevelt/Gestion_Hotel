@@ -352,6 +352,7 @@ public class GerantUI {
         scanner.nextLine();
     }
 
+// fonction pour afficher le menu du gerant ici
     public void afficherMenu() {
         boolean continuer = true;
         while (continuer) {
