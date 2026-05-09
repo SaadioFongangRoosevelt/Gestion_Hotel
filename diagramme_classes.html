@@ -1,0 +1,625 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style>
+.uml-wrap { background:#0f1117; border-radius:12px; padding:20px 16px 28px; overflow-x:auto; }
+.uml-wrap svg { display:block; }
+.sec-label { font:500 11px/1 monospace; fill:#4a5568; letter-spacing:.08em; }
+.box-title { font:600 12px/1 sans-serif; }
+.box-attr  { font:400 11px/1 monospace; }
+.box-method{ font:400 11px/1 monospace; font-style:italic; }
+.stereo    { font:400 10px/1 sans-serif; }
+.rel-label { font:400 10px/1 sans-serif; fill:#6b7a99; }
+.mult      { font:500 10px/1 monospace; fill:#6fcf97; }
+</style>
+</head><body><div class="uml-wrap">
+<svg width="100%" viewBox="0 0 900 2260" role="img">
+<title>Diagramme de classes — Système hôtelier révisé</title>
+<desc>Diagramme UML complet avec héritage, interfaces, classes 
+abstraites, enums et couche DAO pour un système de gestion d'hôtel en 
+Java</desc>
+<defs>
+  <marker id="inh" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+    <polygon points="1,1 11,6 1,11" fill="#0f1117" stroke="#7b8cde" stroke-width="1.2"></polygon>
+  </marker>
+  <marker id="impl" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+    <polygon points="1,1 11,6 1,11" fill="#0f1117" stroke="#a78bfa" stroke-width="1.2"></polygon>
+  </marker>
+  <marker id="assoc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#6b7a99" stroke-width="1.4" stroke-linecap="round"></path>
+  </marker>
+  <marker id="comp" viewBox="0 0 14 10" refX="13" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+    <polygon points="7,1 13,5 7,9 1,5" fill="#f6ad55" stroke="#f6ad55" stroke-width="0.5"></polygon>
+  </marker>
+  <marker id="agg" viewBox="0 0 14 10" refX="13" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+    <polygon points="7,1 13,5 7,9 1,5" fill="#0f1117" stroke="#6b7a99" stroke-width="1.2"></polygon>
+  </marker>
+</defs>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- LEGEND -->
+<!-- ═══════════════════════════════════════ -->
+<rect x="10" y="8" width="880" height="28" rx="5" fill="#1a1d2e" stroke="#2d3154" stroke-width="0.5"></rect>
+<text x="20" y="26" class="sec-label">LÉGENDE :</text>
+<line x1="100" y1="22" x2="130" y2="22" stroke="#7b8cde" stroke-width="1.5" marker-end="url(#inh)"></line>
+<text x="135" y="26" class="sec-label" fill="#7b8cde">héritage</text>
+<line x1="220" y1="22" x2="250" y2="22" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#impl)"></line>
+<text x="255" y="26" class="sec-label" fill="#a78bfa">implémentation</text>
+<line x1="390" y1="22" x2="420" y2="22" stroke="#6b7a99" stroke-width="1.5" marker-end="url(#assoc)"></line>
+<text x="425" y="26" class="sec-label" fill="#6b7a99">association</text>
+<line x1="520" y1="22" x2="550" y2="22" stroke="#f6ad55" stroke-width="1.5" marker-end="url(#comp)"></line>
+<text x="555" y="26" class="sec-label" fill="#f6ad55">composition</text>
+<line x1="650" y1="22" x2="680" y2="22" stroke="#6b7a99" stroke-width="1.5" marker-end="url(#agg)"></line>
+<text x="685" y="26" class="sec-label" fill="#6b7a99">agrégation</text>
+
+<!-- helper macro: box(x,y,w, titleColor, fillHeader, lines[]) -->
+<!-- Colors: abstract=#1e213a header=#252847 ; interface=#1e1e35 header=#27254d ; entity=#1a2030 header=#1e2840 ; enum=#1e2218 header=#1f2d1e -->
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION A : HIÉRARCHIE PERSONNES -->
+<!-- ═══════════════════════════════════════ -->
+<text x="340" y="58" class="sec-label" text-anchor="middle">── A. HIÉRARCHIE DES PERSONNES ──</text>
+
+<!-- Personne abstract -->
+<g id="cls-personne">
+  <rect x="290" y="66" width="240" height="154" rx="5" fill="#1e213a" stroke="#3d4270" stroke-width="0.8"></rect>
+  <rect x="290" y="66" width="240" height="26" rx="5" fill="#252847" stroke="#3d4270" stroke-width="0.8"></rect>
+  <rect x="290" y="88" width="240" height="4" fill="#3d4270" opacity="0.4"></rect>
+  <text x="410" y="83" class="stereo" fill="#9da8e8" text-anchor="middle">«abstract»</text>
+  <text x="410" y="96" class="box-title" fill="#c5caf5" text-anchor="middle">Personne</text>
+  <line x1="290" y1="108" x2="530" y2="108" stroke="#2d3154" stroke-width="0.5"></line>
+  <text x="300" y="122" class="box-attr" fill="#8892b0">- id : String  ex: CLT001</text>
+  <text x="300" y="136" class="box-attr" fill="#8892b0">- nom : String</text>
+  <text x="300" y="150" class="box-attr" fill="#8892b0">- prenom : String</text>
+  <text x="300" y="164" class="box-attr" fill="#8892b0">- telephone : String</text>
+  <line x1="290" y1="172" x2="530" y2="172" stroke="#2d3154" stroke-width="0.5"></line>
+  <text x="300" y="185" class="box-method" fill="#7ec8e3">+ getInfos() : String</text>
+  <text x="300" y="199" class="box-method" fill="#7ec8e3">+ {abstract} getRole() : String</text>
+  <text x="300" y="213" class="box-method" fill="#7ec8e3">+ getId() : String</text>
+</g>
+
+<!-- Héritage Personne → Client -->
+<line x1="370" y1="220" x2="160" y2="295" stroke="#7b8cde" stroke-width="1.2" marker-end="url(#inh)"></line>
+<!-- Héritage Personne → Employe -->
+<line x1="450" y1="220" x2="620" y2="295" stroke="#7b8cde" stroke-width="1.2" marker-end="url(#inh)"></line>
+
+<!-- Client -->
+<g id="cls-client">
+  <rect x="30" y="295" width="230" height="154" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="30" y="295" width="230" height="26" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="145" y="312" class="box-title" fill="#7ecaf5" text-anchor="middle">Client</text>
+  <line x1="30" y1="325" x2="260" y2="325" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="40" y="339" class="box-attr" fill="#8892b0">- numeroCNI : String</text>
+  <text x="40" y="353" class="box-attr" fill="#8892b0">- nationalite : String</text>
+  <text x="40" y="367" class="box-attr" fill="#8892b0">- email : String</text>
+  <line x1="30" y1="375" x2="260" y2="375" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="40" y="389" class="box-method" fill="#7ec8e3">+ getRole() : String</text>
+  <text x="40" y="403" class="box-method" fill="#7ec8e3">+ getHistoriqueSejours()</text>
+  <text x="40" y="417" class="box-method" fill="#7ec8e3">+ getId() : String  CLT+seq</text>
+  <text x="40" y="433" class="box-method" fill="#7ec8e3">+ toString() : String</text>
+</g>
+
+<!-- Employe abstract -->
+<g id="cls-employe">
+  <rect x="490" y="295" width="260" height="168" rx="5" fill="#1e213a" stroke="#3d4270" stroke-width="0.8"></rect>
+  <rect x="490" y="295" width="260" height="26" rx="5" fill="#252847" stroke="#3d4270" stroke-width="0.8"></rect>
+  <text x="620" y="309" class="stereo" fill="#9da8e8" text-anchor="middle">«abstract»</text>
+  <text x="620" y="321" class="box-title" fill="#c5caf5" text-anchor="middle">Employe</text>
+  <line x1="490" y1="325" x2="750" y2="325" stroke="#2d3154" stroke-width="0.5"></line>
+  <text x="500" y="339" class="box-attr" fill="#8892b0">- matricule : String  ex: RCP001</text>
+  <text x="500" y="353" class="box-attr" fill="#8892b0">- salaire : double</text>
+  <text x="500" y="367" class="box-attr" fill="#8892b0">- dateEmbauche : LocalDate</text>
+  <text x="500" y="381" class="box-attr" fill="#8892b0">- compte : Compte</text>
+  <line x1="490" y1="389" x2="750" y2="389" stroke="#2d3154" stroke-width="0.5"></line>
+  <text x="500" y="403" class="box-method" fill="#7ec8e3">+ getRole() : String</text>
+  <text x="500" y="417" class="box-method" fill="#7ec8e3">+ {abstract} getPermissions()</text>
+  <text x="500" y="431" class="box-method" fill="#7ec8e3">+ getMatricule() : String</text>
+  <text x="500" y="445" class="box-method" fill="#7ec8e3">+ toString() : String</text>
+</g>
+
+<!-- héritage Employe → Receptionniste, AgentEntretien, Gerant -->
+<line x1="560" y1="463" x2="110" y2="510" stroke="#7b8cde" stroke-width="1.2" marker-end="url(#inh)"></line>
+<line x1="620" y1="463" x2="400" y2="510" stroke="#7b8cde" stroke-width="1.2" marker-end="url(#inh)"></line>
+<line x1="690" y1="463" x2="700" y2="510" stroke="#7b8cde" stroke-width="1.2" marker-end="url(#inh)"></line>
+
+<!-- Receptionniste -->
+<g>
+  <rect x="20" y="510" width="200" height="130" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="20" y="510" width="200" height="22" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="120" y="525" class="box-title" fill="#7ecaf5" text-anchor="middle">Receptionniste</text>
+  <line x1="20" y1="536" x2="220" y2="536" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="30" y="550" class="box-attr" fill="#8892b0">- poste : String</text>
+  <line x1="20" y1="558" x2="220" y2="558" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="30" y="572" class="box-method" fill="#7ec8e3">+ effectuerCheckIn()</text>
+  <text x="30" y="586" class="box-method" fill="#7ec8e3">+ effectuerCheckOut()</text>
+  <text x="30" y="600" class="box-method" fill="#7ec8e3">+ creerReservation()</text>
+  <text x="30" y="614" class="box-method" fill="#7ec8e3">+ getPermissions() : List</text>
+  <text x="30" y="628" class="box-method" fill="#4a9e6b">// préfixe : RCP</text>
+</g>
+
+<!-- AgentEntretien -->
+<g>
+  <rect x="300" y="510" width="200" height="130" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="300" y="510" width="200" height="22" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="400" y="525" class="box-title" fill="#7ecaf5" text-anchor="middle">AgentEntretien</text>
+  <line x1="300" y1="536" x2="500" y2="536" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="310" y="550" class="box-attr" fill="#8892b0">- zone : String</text>
+  <line x1="300" y1="558" x2="500" y2="558" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="310" y="572" class="box-method" fill="#7ec8e3">+ majEtatChambre()</text>
+  <text x="310" y="586" class="box-method" fill="#7ec8e3">+ signalerProbleme()</text>
+  <text x="310" y="600" class="box-method" fill="#7ec8e3">+ getChambresList()</text>
+  <text x="310" y="614" class="box-method" fill="#7ec8e3">+ getPermissions() : List</text>
+  <text x="310" y="628" class="box-method" fill="#4a9e6b">// préfixe : AGT</text>
+</g>
+
+<!-- Gerant -->
+<g>
+  <rect x="580" y="510" width="200" height="130" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="580" y="510" width="200" height="22" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="680" y="525" class="box-title" fill="#7ecaf5" text-anchor="middle">Gerant</text>
+  <line x1="580" y1="536" x2="780" y2="536" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="590" y="550" class="box-attr" fill="#8892b0">- niveauAcces : int</text>
+  <line x1="580" y1="558" x2="780" y2="558" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="590" y="572" class="box-method" fill="#7ec8e3">+ genererRapport()</text>
+  <text x="590" y="586" class="box-method" fill="#7ec8e3">+ gererComptes()</text>
+  <text x="590" y="600" class="box-method" fill="#7ec8e3">+ consulterTableauBord()</text>
+  <text x="590" y="614" class="box-method" fill="#7ec8e3">+ getPermissions() : List</text>
+  <text x="590" y="628" class="box-method" fill="#4a9e6b">// préfixe : GRT</text>
+</g>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION B : AUTHENTIFICATION -->
+<!-- ═══════════════════════════════════════ -->
+<text x="450" y="678" class="sec-label" text-anchor="middle">── B. AUTHENTIFICATION ──</text>
+
+<!-- Interface Authentifiable -->
+<g>
+  <rect x="30" y="688" width="240" height="106" rx="5" fill="#1e1e35" stroke="#5b4fad" stroke-width="0.8" stroke-dasharray="5 2"></rect>
+  <rect x="30" y="688" width="240" height="22" rx="5" fill="#27254d" stroke="#5b4fad" stroke-width="0.8"></rect>
+  <text x="150" y="702" class="stereo" fill="#a78bfa" text-anchor="middle">«interface» Authentifiable</text>
+  <line x1="30" y1="714" x2="270" y2="714" stroke="#3d3a6e" stroke-width="0.5"></line>
+  <text x="40" y="728" class="box-method" fill="#a78bfa">+ seConnecter(login,mdp):boolean</text>
+  <text x="40" y="742" class="box-method" fill="#a78bfa">+ seDeconnecter() : void</text>
+  <text x="40" y="756" class="box-method" fill="#a78bfa">+ verifierPermission(a):boolean</text>
+  <text x="40" y="770" class="box-method" fill="#a78bfa">+ changerMotDePasse() : void</text>
+  <text x="40" y="784" class="box-method" fill="#a78bfa">+ estActif() : boolean</text>
+</g>
+
+<!-- Employe impl Authentifiable -->
+<path d="M620 510 L620 490 L150 490 L150 688" stroke="#a78bfa" stroke-width="1" stroke-dasharray="6 3" fill="none" marker-end="url(#impl)"></path>
+
+<!-- Compte -->
+<g>
+  <rect x="330" y="688" width="260" height="140" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="330" y="688" width="260" height="22" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="460" y="703" class="box-title" fill="#7ecaf5" text-anchor="middle">Compte</text>
+  <line x1="330" y1="714" x2="590" y2="714" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="340" y="728" class="box-attr" fill="#8892b0">- id : String  ex: CPT001</text>
+  <text x="340" y="742" class="box-attr" fill="#8892b0">- login : String</text>
+  <text x="340" y="756" class="box-attr" fill="#8892b0">- motDePasse : String (hashé)</text>
+  <text x="340" y="770" class="box-attr" fill="#8892b0">- role : RoleEnum</text>
+  <text x="340" y="784" class="box-attr" fill="#8892b0">- actif : boolean</text>
+  <line x1="330" y1="792" x2="590" y2="792" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="340" y="806" class="box-method" fill="#7ec8e3">+ seConnecter() : boolean</text>
+  <text x="340" y="820" class="box-method" fill="#7ec8e3">+ desactiver() : void</text>
+</g>
+
+<!-- RoleEnum -->
+<g>
+  <rect x="650" y="688" width="210" height="100" rx="5" fill="#1e2218" stroke="#3a5a3a" stroke-width="0.8"></rect>
+  <rect x="650" y="688" width="210" height="22" rx="5" fill="#1f2d1e" stroke="#3a5a3a" stroke-width="0.8"></rect>
+  <text x="755" y="703" class="stereo" fill="#6fcf97" text-anchor="middle">«enum» RoleEnum</text>
+  <line x1="650" y1="714" x2="860" y2="714" stroke="#2d4a2d" stroke-width="0.5"></line>
+  <text x="660" y="730" class="box-attr" fill="#6fcf97">GERANT</text>
+  <text x="660" y="746" class="box-attr" fill="#6fcf97">RECEPTIONNISTE</text>
+  <text x="660" y="762" class="box-attr" fill="#6fcf97">AGENT_ENTRETIEN</text>
+  <text x="660" y="778" class="box-attr" fill="#6fcf97">+ fromString(s):RoleEnum</text>
+</g>
+
+<!-- Employe composition Compte -->
+<path d="M750 463 L750 470 L460 470 L460 688" stroke="#f6ad55" stroke-width="1.2" fill="none" marker-end="url(#comp)"></path>
+<text x="500" y="466" class="rel-label">1  1</text>
+
+<!-- Compte → RoleEnum -->
+<line x1="590" y1="756" x2="650" y2="756" stroke="#6b7a99" stroke-width="1" stroke-dasharray="4 2" marker-end="url(#assoc)"></line>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION C : CHAMBRES -->
+<!-- ═══════════════════════════════════════ -->
+<text x="140" y="868" class="sec-label" text-anchor="middle">── C. CHAMBRES ──</text>
+
+<!-- Chambre abstract -->
+<g>
+  <rect x="20" y="878" width="250" height="182" rx="5" fill="#1e213a" stroke="#3d4270" stroke-width="0.8"></rect>
+  <rect x="20" y="878" width="250" height="22" rx="5" fill="#252847" stroke="#3d4270" stroke-width="0.8"></rect>
+  <text x="145" y="893" class="stereo" fill="#9da8e8" text-anchor="middle">«abstract» Chambre</text>
+  <line x1="20" y1="904" x2="270" y2="904" stroke="#2d3154" stroke-width="0.5"></line>
+  <text x="30" y="918" class="box-attr" fill="#8892b0">- id : String  ex: CHB001</text>
+  <text x="30" y="932" class="box-attr" fill="#8892b0">- numero : String</text>
+  <text x="30" y="946" class="box-attr" fill="#8892b0">- etage : int</text>
+  <text x="30" y="960" class="box-attr" fill="#8892b0">- capacite : int</text>
+  <text x="30" y="974" class="box-attr" fill="#8892b0">- etat : EtatChambreEnum</text>
+  <text x="30" y="988" class="box-attr" fill="#8892b0">- typeChambre : TypeChambre</text>
+  <line x1="20" y1="996" x2="270" y2="996" stroke="#2d3154" stroke-width="0.5"></line>
+  <text x="30" y="1010" class="box-method" fill="#7ec8e3">+ changerEtat(EtatChambreEnum)</text>
+  <text x="30" y="1024" class="box-method" fill="#7ec8e3">+ {abstract} getPrixNuit():double</text>
+  <text x="30" y="1038" class="box-method" fill="#7ec8e3">+ estDispo(debut,fin):boolean</text>
+  <text x="30" y="1052" class="box-method" fill="#7ec8e3">+ toString() : String</text>
+</g>
+
+<!-- TypeChambre -->
+<g>
+  <rect x="300" y="878" width="230" height="112" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="300" y="878" width="230" height="22" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="415" y="893" class="box-title" fill="#7ecaf5" text-anchor="middle">TypeChambre</text>
+  <line x1="300" y1="904" x2="530" y2="904" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="310" y="918" class="box-attr" fill="#8892b0">- id : String  ex: TCH001</text>
+  <text x="310" y="932" class="box-attr" fill="#8892b0">- libelle : String</text>
+  <text x="310" y="946" class="box-attr" fill="#8892b0">- prixBase : double</text>
+  <text x="310" y="960" class="box-attr" fill="#8892b0">- description : String</text>
+  <line x1="300" y1="968" x2="530" y2="968" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="310" y="982" class="box-method" fill="#7ec8e3">+ getPrixBase() : double</text>
+</g>
+
+<!-- EtatChambreEnum -->
+<g>
+  <rect x="560" y="878" width="210" height="112" rx="5" fill="#1e2218" stroke="#3a5a3a" stroke-width="0.8"></rect>
+  <rect x="560" y="878" width="210" height="22" rx="5" fill="#1f2d1e" stroke="#3a5a3a" stroke-width="0.8"></rect>
+  <text x="665" y="893" class="stereo" fill="#6fcf97" text-anchor="middle">«enum» EtatChambreEnum</text>
+  <line x1="560" y1="904" x2="770" y2="904" stroke="#2d4a2d" stroke-width="0.5"></line>
+  <text x="570" y="920" class="box-attr" fill="#6fcf97">DISPONIBLE</text>
+  <text x="570" y="936" class="box-attr" fill="#6fcf97">RESERVEE</text>
+  <text x="570" y="952" class="box-attr" fill="#6fcf97">OCCUPEE</text>
+  <text x="570" y="968" class="box-attr" fill="#6fcf97">EN_NETTOYAGE</text>
+  <text x="570" y="984" class="box-attr" fill="#6fcf97">HORS_SERVICE</text>
+</g>
+
+<!-- Chambre → TypeChambre -->
+<line x1="270" y1="940" x2="300" y2="940" stroke="#6b7a99" stroke-width="1.2" marker-end="url(#assoc)"></line>
+<!-- Chambre → EtatChambreEnum -->
+<line x1="270" y1="974" x2="560" y2="950" stroke="#6b7a99" stroke-width="1" stroke-dasharray="4 2" marker-end="url(#assoc)"></line>
+
+<!-- Héritage Chambre subclasses -->
+<line x1="100" y1="1060" x2="60" y2="1110" stroke="#7b8cde" stroke-width="1.2" marker-end="url(#inh)"></line>
+<line x1="145" y1="1060" x2="155" y2="1110" stroke="#7b8cde" stroke-width="1.2" marker-end="url(#inh)"></line>
+<line x1="195" y1="1060" x2="250" y2="1110" stroke="#7b8cde" stroke-width="1.2" marker-end="url(#inh)"></line>
+
+<!-- ChambreStandard -->
+<g>
+  <rect x="20" y="1110" width="100" height="82" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="20" y="1110" width="100" height="20" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="70" y="1124" class="box-title" fill="#7ecaf5" text-anchor="middle">Standard</text>
+  <line x1="20" y1="1132" x2="120" y2="1132" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="28" y="1146" class="box-attr" fill="#8892b0">coeff: 1.0</text>
+  <line x1="20" y1="1154" x2="120" y2="1154" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="28" y="1170" class="box-method" fill="#7ec8e3">getPrixNuit()</text>
+  <text x="28" y="1184" class="box-method" fill="#4a9e6b">CHB+seq</text>
+</g>
+
+<!-- ChambreVIP -->
+<g>
+  <rect x="130" y="1110" width="90" height="82" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="130" y="1110" width="90" height="20" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="175" y="1124" class="box-title" fill="#7ecaf5" text-anchor="middle">VIP</text>
+  <line x1="130" y1="1132" x2="220" y2="1132" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="138" y="1146" class="box-attr" fill="#8892b0">coeff: 1.5</text>
+  <line x1="130" y1="1154" x2="220" y2="1154" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="138" y="1170" class="box-method" fill="#7ec8e3">getPrixNuit()</text>
+  <text x="138" y="1184" class="box-method" fill="#4a9e6b">CHB+seq</text>
+</g>
+
+<!-- Suite -->
+<g>
+  <rect x="230" y="1110" width="90" height="82" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="230" y="1110" width="90" height="20" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="275" y="1124" class="box-title" fill="#7ecaf5" text-anchor="middle">Suite</text>
+  <line x1="230" y1="1132" x2="320" y2="1132" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="238" y="1146" class="box-attr" fill="#8892b0">coeff: 2.5</text>
+  <line x1="230" y1="1154" x2="320" y2="1154" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="238" y="1170" class="box-method" fill="#7ec8e3">getPrixNuit()</text>
+  <text x="238" y="1184" class="box-method" fill="#4a9e6b">CHB+seq</text>
+</g>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION D : INTERFACES COMPORTEMENTALES -->
+<!-- ═══════════════════════════════════════ -->
+<text x="650" y="868" class="sec-label" text-anchor="middle">── D. INTERFACES ──</text>
+
+<!-- Interface Facturable -->
+<g>
+  <rect x="560" y="1050" width="240" height="96" rx="5" fill="#1e1e35" stroke="#5b4fad" stroke-width="0.8" stroke-dasharray="5 2"></rect>
+  <rect x="560" y="1050" width="240" height="22" rx="5" fill="#27254d" stroke="#5b4fad" stroke-width="0.8"></rect>
+  <text x="680" y="1065" class="stereo" fill="#a78bfa" text-anchor="middle">«interface» Facturable</text>
+  <line x1="560" y1="1076" x2="800" y2="1076" stroke="#3d3a6e" stroke-width="0.5"></line>
+  <text x="570" y="1090" class="box-method" fill="#a78bfa">+ getMontant() : double</text>
+  <text x="570" y="1104" class="box-method" fill="#a78bfa">+ getLibelle() : String</text>
+  <text x="570" y="1118" class="box-method" fill="#a78bfa">+ getDate() : LocalDate</text>
+  <text x="570" y="1132" class="box-method" fill="#a78bfa">+ getQuantite() : int</text>
+</g>
+
+<!-- Interface Exportable -->
+<g>
+  <rect x="560" y="1168" width="240" height="82" rx="5" fill="#1e1e35" stroke="#5b4fad" stroke-width="0.8" stroke-dasharray="5 2"></rect>
+  <rect x="560" y="1168" width="240" height="22" rx="5" fill="#27254d" stroke="#5b4fad" stroke-width="0.8"></rect>
+  <text x="680" y="1183" class="stereo" fill="#a78bfa" text-anchor="middle">«interface» Exportable</text>
+  <line x1="560" y1="1194" x2="800" y2="1194" stroke="#3d3a6e" stroke-width="0.5"></line>
+  <text x="570" y="1208" class="box-method" fill="#a78bfa">+ exporter() : void</text>
+  <text x="570" y="1222" class="box-method" fill="#a78bfa">+ genererPDF() : File</text>
+  <text x="570" y="1236" class="box-method" fill="#a78bfa">+ afficherApercu() : void</text>
+</g>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION E : RÉSERVATION & FACTURE -->
+<!-- ═══════════════════════════════════════ -->
+<text x="220" y="1230" class="sec-label" text-anchor="middle">── E. RÉSERVATION ──</text>
+
+<!-- Reservation -->
+<g>
+  <rect x="20" y="1240" width="250" height="182" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="20" y="1240" width="250" height="22" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="145" y="1255" class="box-title" fill="#7ecaf5" text-anchor="middle">Reservation</text>
+  <line x1="20" y1="1266" x2="270" y2="1266" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="30" y="1280" class="box-attr" fill="#8892b0">- id : String  ex: RSV001</text>
+  <text x="30" y="1294" class="box-attr" fill="#8892b0">- dateDebut : LocalDate</text>
+  <text x="30" y="1308" class="box-attr" fill="#8892b0">- dateFin : LocalDate</text>
+  <text x="30" y="1322" class="box-attr" fill="#8892b0">- statut : StatutReservEnum</text>
+  <text x="30" y="1336" class="box-attr" fill="#8892b0">- client : Client</text>
+  <text x="30" y="1350" class="box-attr" fill="#8892b0">- chambre : Chambre</text>
+  <line x1="20" y1="1358" x2="270" y2="1358" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="30" y="1372" class="box-method" fill="#7ec8e3">+ annuler() : void</text>
+  <text x="30" y="1386" class="box-method" fill="#7ec8e3">+ confirmer() : void</text>
+  <text x="30" y="1400" class="box-method" fill="#7ec8e3">+ getNombreNuits() : int</text>
+  <text x="30" y="1414" class="box-method" fill="#7ec8e3">+ toString() : String</text>
+</g>
+
+<!-- StatutReservEnum -->
+<g>
+  <rect x="300" y="1240" width="200" height="100" rx="5" fill="#1e2218" stroke="#3a5a3a" stroke-width="0.8"></rect>
+  <rect x="300" y="1240" width="200" height="22" rx="5" fill="#1f2d1e" stroke="#3a5a3a" stroke-width="0.8"></rect>
+  <text x="400" y="1255" class="stereo" fill="#6fcf97" text-anchor="middle">«enum» StatutReservEnum</text>
+  <line x1="300" y1="1266" x2="500" y2="1266" stroke="#2d4a2d" stroke-width="0.5"></line>
+  <text x="310" y="1282" class="box-attr" fill="#6fcf97">EN_ATTENTE</text>
+  <text x="310" y="1298" class="box-attr" fill="#6fcf97">CONFIRMEE</text>
+  <text x="310" y="1314" class="box-attr" fill="#6fcf97">ANNULEE</text>
+  <text x="310" y="1330" class="box-attr" fill="#6fcf97">TERMINEE</text>
+</g>
+
+<!-- Reservation → StatutReservEnum -->
+<line x1="270" y1="1322" x2="300" y2="1302" stroke="#6b7a99" stroke-width="1" stroke-dasharray="4 2" marker-end="url(#assoc)"></line>
+
+<!-- Reservation → Client (aggrégation) -->
+<path d="M145 1240 L145 1210 L145 1210" stroke="#6b7a99" stroke-width="1.2" fill="none"></path>
+<path d="M145 1210 L145 1160 L145 1160" stroke="#6b7a99" stroke-width="1.2" fill="none"></path>
+<path d="M145 1160 L145 449" stroke="#6b7a99" stroke-width="1.2" fill="none" marker-end="url(#agg)"></path>
+<text x="148" y="1245" class="mult">*</text>
+<text x="148" y="305" class="mult">1</text>
+
+<!-- Reservation → Chambre (aggrégation) -->
+<path d="M60 1240 L60 1200 L30 1200 L30 1060" stroke="#6b7a99" stroke-width="1.2" fill="none" marker-end="url(#agg)"></path>
+<text x="35" y="1244" class="mult">*</text>
+<text x="35" y="1065" class="mult">1</text>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION F : FACTURE (générée à la résa) -->
+<!-- ═══════════════════════════════════════ -->
+<text x="220" y="1468" class="sec-label" text-anchor="middle">── F. FACTURE &amp; PAIEMENT ──</text>
+
+<!-- Facture -->
+<g>
+  <rect x="20" y="1478" width="260" height="182" rx="5" fill="#1a2030" stroke="#c9963c" stroke-width="0.8"></rect>
+  <rect x="20" y="1478" width="260" height="22" rx="5" fill="#2a2015" stroke="#c9963c" stroke-width="0.8"></rect>
+  <text x="150" y="1493" class="box-title" fill="#f6ad55" text-anchor="middle">Facture</text>
+  <text x="150" y="1506" class="stereo" fill="#c9963c" text-anchor="middle">générée à la réservation</text>
+  <line x1="20" y1="1510" x2="280" y2="1510" stroke="#3a3020" stroke-width="0.5"></line>
+  <text x="30" y="1524" class="box-attr" fill="#8892b0">- id : String  ex: FAC001</text>
+  <text x="30" y="1538" class="box-attr" fill="#8892b0">- dateEmission : LocalDateTime</text>
+  <text x="30" y="1552" class="box-attr" fill="#8892b0">- montantTotal : double</text>
+  <text x="30" y="1566" class="box-attr" fill="#8892b0">- statut : StatutFactureEnum</text>
+  <text x="30" y="1580" class="box-attr" fill="#8892b0">- lignes : List&lt;LigneFacture&gt;</text>
+  <text x="30" y="1594" class="box-attr" fill="#8892b0">- paiement : Paiement</text>
+  <line x1="20" y1="1602" x2="280" y2="1602" stroke="#3a3020" stroke-width="0.5"></line>
+  <text x="30" y="1616" class="box-method" fill="#f6ad55">+ calculerTotal() : double</text>
+  <text x="30" y="1630" class="box-method" fill="#f6ad55">+ ajouterLigne(LigneFacture)</text>
+  <text x="30" y="1644" class="box-method" fill="#f6ad55">+ genererPDF() : File</text>
+  <text x="30" y="1658" class="box-method" fill="#f6ad55">+ exporter() : void</text>
+</g>
+
+<!-- Facture implémente Exportable -->
+<path d="M280 1560 L530 1560 L530 1209 L560 1209" stroke="#a78bfa" stroke-width="1" stroke-dasharray="6 3" fill="none" marker-end="url(#impl)"></path>
+
+<!-- Reservation composition Facture (1-1, générée à la résa) -->
+<line x1="145" y1="1422" x2="145" y2="1478" stroke="#f6ad55" stroke-width="1.5" marker-end="url(#comp)"></line>
+<text x="150" y="1470" class="mult">1</text>
+<text x="150" y="1430" class="mult">1</text>
+
+<!-- StatutFactureEnum -->
+<g>
+  <rect x="300" y="1478" width="210" height="100" rx="5" fill="#1e2218" stroke="#3a5a3a" stroke-width="0.8"></rect>
+  <rect x="300" y="1478" width="210" height="22" rx="5" fill="#1f2d1e" stroke="#3a5a3a" stroke-width="0.8"></rect>
+  <text x="405" y="1493" class="stereo" fill="#6fcf97" text-anchor="middle">«enum» StatutFactureEnum</text>
+  <line x1="300" y1="1504" x2="510" y2="1504" stroke="#2d4a2d" stroke-width="0.5"></line>
+  <text x="310" y="1520" class="box-attr" fill="#6fcf97">EN_ATTENTE</text>
+  <text x="310" y="1536" class="box-attr" fill="#6fcf97">PARTIELLEMENT_PAYEE</text>
+  <text x="310" y="1552" class="box-attr" fill="#6fcf97">SOLDEE</text>
+  <text x="310" y="1568" class="box-attr" fill="#6fcf97">ANNULEE</text>
+</g>
+
+<!-- Facture → StatutFactureEnum -->
+<line x1="280" y1="1566" x2="300" y2="1540" stroke="#6b7a99" stroke-width="1" stroke-dasharray="4 2" marker-end="url(#assoc)"></line>
+
+<!-- LigneFacture -->
+<g>
+  <rect x="300" y="1600" width="230" height="112" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="300" y="1600" width="230" height="22" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="415" y="1615" class="box-title" fill="#7ecaf5" text-anchor="middle">LigneFacture</text>
+  <line x1="300" y1="1626" x2="530" y2="1626" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="310" y="1640" class="box-attr" fill="#8892b0">- quantite : int</text>
+  <text x="310" y="1654" class="box-attr" fill="#8892b0">- prixUnitaire : double</text>
+  <text x="310" y="1668" class="box-attr" fill="#8892b0">- facturable : Facturable</text>
+  <line x1="300" y1="1676" x2="530" y2="1676" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="310" y="1690" class="box-method" fill="#7ec8e3">+ getSousTotal() : double</text>
+  <text x="310" y="1704" class="box-method" fill="#7ec8e3">+ getLibelleComplet()</text>
+</g>
+
+<!-- Facture composition LigneFacture -->
+<line x1="280" y1="1620" x2="300" y2="1652" stroke="#f6ad55" stroke-width="1.2" marker-end="url(#comp)"></line>
+<text x="284" y="1635" class="mult">1..*</text>
+
+<!-- Paiement abstract -->
+<g>
+  <rect x="20" y="1700" width="260" height="154" rx="5" fill="#1e213a" stroke="#3d4270" stroke-width="0.8"></rect>
+  <rect x="20" y="1700" width="260" height="22" rx="5" fill="#252847" stroke="#3d4270" stroke-width="0.8"></rect>
+  <text x="150" y="1715" class="stereo" fill="#9da8e8" text-anchor="middle">«abstract» Paiement</text>
+  <line x1="20" y1="1726" x2="280" y2="1726" stroke="#2d3154" stroke-width="0.5"></line>
+  <text x="30" y="1740" class="box-attr" fill="#8892b0">- id : String  ex: PAY001</text>
+  <text x="30" y="1754" class="box-attr" fill="#8892b0">- montant : double</text>
+  <text x="30" y="1768" class="box-attr" fill="#8892b0">- datePaiement : LocalDateTime</text>
+  <text x="30" y="1782" class="box-attr" fill="#8892b0">- reference : String</text>
+  <line x1="20" y1="1790" x2="280" y2="1790" stroke="#2d3154" stroke-width="0.5"></line>
+  <text x="30" y="1804" class="box-method" fill="#7ec8e3">+ {abstract} payer() : boolean</text>
+  <text x="30" y="1818" class="box-method" fill="#7ec8e3">+ getMontant() : double</text>
+  <text x="30" y="1832" class="box-method" fill="#7ec8e3">+ getLibelle() : String</text>
+  <text x="30" y="1846" class="box-method" fill="#7ec8e3">+ getDate() : LocalDate</text>
+</g>
+
+<!-- Paiement implémente Facturable -->
+<path d="M280 1778 L530 1778 L530 1098 L560 1098" stroke="#a78bfa" stroke-width="1" stroke-dasharray="6 3" fill="none" marker-end="url(#impl)"></path>
+
+<!-- Facture agrégation Paiement -->
+<line x1="150" y1="1660" x2="150" y2="1700" stroke="#6b7a99" stroke-width="1.2" marker-end="url(#agg)"></line>
+<text x="155" y="1698" class="mult">0..1</text>
+
+<!-- Héritage Paiement subclasses -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<line x1="80" y1="1854" x2="60" y2="1910" stroke="#7b8cde" stroke-width="1.2" marker-end="url(#inh)"></line><g>
+  <rect x="20" y="1910" width="90" height="66" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="20" y="1910" width="90" height="20" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="65" y="1924" class="box-title" fill="#7ecaf5" text-anchor="middle">Espèces</text>
+  <line x1="20" y1="1932" x2="110" y2="1932" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="28" y="1948" class="box-method" fill="#7ec8e3">payer()</text>
+  <text x="28" y="1962" class="box-method" fill="#7ec8e3">renduMonnaie()</text>
+</g><!-- ═══════════════════════════════════════ -->
+<!-- SECTION G : SERVICES SUPPL. -->
+<!-- ═══════════════════════════════════════ -->
+<text x="650" y="1468" class="sec-label" text-anchor="middle">── G. SERVICES SUPPLÉMENTAIRES ──</text>
+
+<!-- ServiceSupplementaire -->
+<g>
+  <rect x="560" y="1478" width="270" height="154" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="560" y="1478" width="270" height="22" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="695" y="1493" class="box-title" fill="#7ecaf5" text-anchor="middle">ServiceSupplementaire</text>
+  <line x1="560" y1="1504" x2="830" y2="1504" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="570" y="1518" class="box-attr" fill="#8892b0">- id : String  ex: SRV001</text>
+  <text x="570" y="1532" class="box-attr" fill="#8892b0">- libelle : String</text>
+  <text x="570" y="1546" class="box-attr" fill="#8892b0">- prixUnitaire : double</text>
+  <text x="570" y="1560" class="box-attr" fill="#8892b0">- categorie : CategorieServiceEnum</text>
+  <text x="570" y="1574" class="box-attr" fill="#8892b0">- quantite : int</text>
+  <line x1="560" y1="1582" x2="830" y2="1582" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="570" y="1596" class="box-method" fill="#7ec8e3">+ getMontant() : double</text>
+  <text x="570" y="1610" class="box-method" fill="#7ec8e3">+ getLibelle() : String</text>
+  <text x="570" y="1624" class="box-method" fill="#7ec8e3">+ getDate() : LocalDate</text>
+</g>
+
+<!-- ServiceSupplementaire implémente Facturable -->
+<line x1="695" y1="1478" x2="695" y2="1146" stroke="#a78bfa" stroke-width="1" stroke-dasharray="6 3" fill="none" marker-end="url(#impl)"></line>
+
+<!-- CategorieServiceEnum -->
+<g>
+  <rect x="560" y="1660" width="220" height="108" rx="5" fill="#1e2218" stroke="#3a5a3a" stroke-width="0.8"></rect>
+  <rect x="560" y="1660" width="220" height="22" rx="5" fill="#1f2d1e" stroke="#3a5a3a" stroke-width="0.8"></rect>
+  <text x="670" y="1675" class="stereo" fill="#6fcf97" text-anchor="middle">«enum» CategorieServiceEnum</text>
+  <line x1="560" y1="1686" x2="780" y2="1686" stroke="#2d4a2d" stroke-width="0.5"></line>
+  <text x="570" y="1702" class="box-attr" fill="#6fcf97">RESTAURATION</text>
+  <text x="570" y="1718" class="box-attr" fill="#6fcf97">BLANCHISSERIE</text>
+  <text x="570" y="1734" class="box-attr" fill="#6fcf97">TRANSPORT</text>
+  <text x="570" y="1750" class="box-attr" fill="#6fcf97">AUTRE</text>
+</g>
+
+<!-- ServiceSupplementaire → CategorieServiceEnum -->
+<line x1="670" y1="1632" x2="670" y2="1660" stroke="#6b7a99" stroke-width="1" stroke-dasharray="4 2" marker-end="url(#assoc)"></line>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION H : COUCHE DAO -->
+<!-- ═══════════════════════════════════════ -->
+<text x="450" y="2008" class="sec-label" text-anchor="middle">── H. COUCHE DAO (persistance fichiers TXT) ──</text>
+
+<!-- IDao interface générique -->
+<g>
+  <rect x="300" y="2018" width="300" height="118" rx="5" fill="#1e1e35" stroke="#5b4fad" stroke-width="0.8" stroke-dasharray="5 2"></rect>
+  <rect x="300" y="2018" width="300" height="22" rx="5" fill="#27254d" stroke="#5b4fad" stroke-width="0.8"></rect>
+  <text x="450" y="2033" class="stereo" fill="#a78bfa" text-anchor="middle">«interface» IDao&lt;T&gt;</text>
+  <line x1="300" y1="2044" x2="600" y2="2044" stroke="#3d3a6e" stroke-width="0.5"></line>
+  <text x="310" y="2058" class="box-method" fill="#a78bfa">+ sauvegarder(T) : void</text>
+  <text x="310" y="2072" class="box-method" fill="#a78bfa">+ trouverParId(id):Optional&lt;T&gt;</text>
+  <text x="310" y="2086" class="box-method" fill="#a78bfa">+ trouverTous() : List&lt;T&gt;</text>
+  <text x="310" y="2100" class="box-method" fill="#a78bfa">+ modifier(T) : void</text>
+  <text x="310" y="2114" class="box-method" fill="#a78bfa">+ supprimer(id) : void</text>
+  <text x="310" y="2128" class="box-method" fill="#a78bfa">+ genererProchainId():String</text>
+</g>
+
+<!-- Impl DAOs -->
+<g>
+  <rect x="30" y="2168" width="160" height="62" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="30" y="2168" width="160" height="20" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="110" y="2182" class="box-title" fill="#7ecaf5" text-anchor="middle">ClientDaoTxt</text>
+  <line x1="30" y1="2190" x2="190" y2="2190" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="38" y="2206" class="box-method" fill="#4a9e6b">fichier: clients.txt</text>
+  <text x="38" y="2220" class="box-method" fill="#7ec8e3">+ genererProchainId()</text>
+</g>
+<g>
+  <rect x="210" y="2168" width="170" height="62" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="210" y="2168" width="170" height="20" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="295" y="2182" class="box-title" fill="#7ecaf5" text-anchor="middle">ReservationDaoTxt</text>
+  <line x1="210" y1="2190" x2="380" y2="2190" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="218" y="2206" class="box-method" fill="#4a9e6b">fichier: reservations.txt</text>
+  <text x="218" y="2220" class="box-method" fill="#7ec8e3">+ genererProchainId()</text>
+</g>
+<g>
+  <rect x="400" y="2168" width="150" height="62" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="400" y="2168" width="150" height="20" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="475" y="2182" class="box-title" fill="#7ecaf5" text-anchor="middle">FactureDaoTxt</text>
+  <line x1="400" y1="2190" x2="550" y2="2190" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="408" y="2206" class="box-method" fill="#4a9e6b">fichier: factures.txt</text>
+  <text x="408" y="2220" class="box-method" fill="#7ec8e3">+ genererProchainId()</text>
+</g>
+<g>
+  <rect x="570" y="2168" width="150" height="62" rx="5" fill="#1a2030" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <rect x="570" y="2168" width="150" height="20" rx="5" fill="#1e2840" stroke="#2d4a6e" stroke-width="0.8"></rect>
+  <text x="645" y="2182" class="box-title" fill="#7ecaf5" text-anchor="middle">ChambreDaoTxt</text>
+  <line x1="570" y1="2190" x2="720" y2="2190" stroke="#1e3050" stroke-width="0.5"></line>
+  <text x="578" y="2206" class="box-method" fill="#4a9e6b">fichier: chambres.txt</text>
+  <text x="578" y="2220" class="box-method" fill="#7ec8e3">+ genererProchainId()</text>
+</g>
+
+<!-- IDao → impl (implémentation) -->
+<line x1="450" y1="2136" x2="110" y2="2168" stroke="#a78bfa" stroke-width="1" stroke-dasharray="5 3" fill="none" marker-end="url(#impl)"></line>
+<line x1="450" y1="2136" x2="295" y2="2168" stroke="#a78bfa" stroke-width="1" stroke-dasharray="5 3" fill="none" marker-end="url(#impl)"></line>
+<line x1="450" y1="2136" x2="475" y2="2168" stroke="#a78bfa" stroke-width="1" stroke-dasharray="5 3" fill="none" marker-end="url(#impl)"></line>
+<line x1="450" y1="2136" x2="645" y2="2168" stroke="#a78bfa" stroke-width="1" stroke-dasharray="5 3" fill="none" marker-end="url(#impl)"></line>
+
+<!-- IdGenerator -->
+<g>
+  <rect x="750" y="2018" width="140" height="98" rx="5" fill="#1e2218" stroke="#3a5a3a" stroke-width="0.8"></rect>
+  <rect x="750" y="2018" width="140" height="22" rx="5" fill="#1f2d1e" stroke="#3a5a3a" stroke-width="0.8"></rect>
+  <text x="820" y="2033" class="box-title" fill="#6fcf97" text-anchor="middle">IdGenerator</text>
+  <line x1="750" y1="2044" x2="890" y2="2044" stroke="#2d4a2d" stroke-width="0.5"></line>
+  <text x="758" y="2058" class="box-attr" fill="#6fcf97">Prefixes constants:</text>
+  <text x="758" y="2072" class="box-attr" fill="#6fcf97">CLT RCP AGT GRT</text>
+  <text x="758" y="2086" class="box-attr" fill="#6fcf97">CHB RSV FAC PAY</text>
+  <line x1="750" y1="2094" x2="890" y2="2094" stroke="#2d4a2d" stroke-width="0.5"></line>
+  <text x="758" y="2108" class="box-method" fill="#7ec8e3">+ generer(pfx,n):String</text>
+</g>
+
+</svg>
+</div>
+</body></html>
